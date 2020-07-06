@@ -15,8 +15,27 @@ module.exports = {
         type: Sequelize.TEXT
       },
       status: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+        allowNull: false
+      },
+
+      categoryId: {
         type: Sequelize.INTEGER,
-        defaultValue: 1
+        references: {
+          model: 'categories',
+          key: 'id'
+        },
+        onDelete: 'CASCADE'
+      },
+
+      userId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'users',
+          key: 'id'
+        },
+        onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,
