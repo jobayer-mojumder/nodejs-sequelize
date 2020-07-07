@@ -5,6 +5,9 @@ const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
+var postModel = require('./models').post;
+var userModel = require('./models').user;
+
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -15,6 +18,15 @@ app.get('/', (req, res) => {
         message: "Welcome to the application"
     });
 })
+
+app.get('/users', (req, res) => {
+    userModel.findAll().then(function (data) {
+        res.json({ data: data })
+    }).catch(function (error) {
+        res.json({ er: error })
+    })
+})
+
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
