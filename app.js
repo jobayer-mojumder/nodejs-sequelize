@@ -27,6 +27,14 @@ app.get('/users', (req, res) => {
     })
 })
 
+app.get('/posts', (req, res) => {
+    postModel.findAll().then(function (data) {
+        res.json({ data: data })
+    }).catch(function (error) {
+        res.json({ er: error })
+    })
+})
+
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {

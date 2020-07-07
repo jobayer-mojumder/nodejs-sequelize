@@ -6,10 +6,9 @@ module.exports = (sequelize, DataTypes) => {
   class category extends Model {
 
     static associate(models) {
-      // category.belongsToMany(models.post, {
-      //   foreignKey: 'categoryId',
-      //   targetKey: 'id'
-      // })
+      category.hasMany(models.post, {
+        foreignKey: 'categoryId'
+      })
     }
   };
   category.init({

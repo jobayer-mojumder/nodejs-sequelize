@@ -9,13 +9,13 @@ module.exports = (sequelize, DataTypes) => {
 
       post.belongsTo(models.user, {
         foreignKey: 'userId',
-        targetKey: 'id'
+        as: 'userid'
       })
 
-      // post.belongsToMany(models.category, {
-      //   foreignKey: 'id',
-      //   targetKey: 'categoryId'
-      // })
+      post.belongsTo(models.category, {
+        foreignKey: 'categoryId',
+        as: 'categoryid'
+      })
 
     }
   };
