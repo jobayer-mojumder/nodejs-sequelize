@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
   post.init({
     title: DataTypes.STRING,
     details: DataTypes.TEXT,
-    catgoryId: DataTypes.INTEGER,
+    categoryId: DataTypes.INTEGER,
     userId: DataTypes.INTEGER,
     status: DataTypes.BOOLEAN
   }, {

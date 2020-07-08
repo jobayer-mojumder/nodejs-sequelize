@@ -7,6 +7,7 @@ const cors = require('cors')
 
 var postModel = require('./models').post;
 var userModel = require('./models').user;
+var categoryModel = require('./models').category;
 
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -20,7 +21,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/users', (req, res) => {
-    userModel.findAll().then(function (data) {
+    userModel.findAll({ include: postModel }).then(function (data) {
         res.json({ data: data })
     }).catch(function (error) {
         res.json({ er: error })
@@ -29,6 +30,14 @@ app.get('/users', (req, res) => {
 
 app.get('/posts', (req, res) => {
     postModel.findAll().then(function (data) {
+        res.json({ data: data })
+    }).catch(function (error) {
+        res.json({ er: error })
+    })
+})
+
+app.get('/categories', (req, res) => {
+    categoryModel.findAll().then(function (data) {
         res.json({ data: data })
     }).catch(function (error) {
         res.json({ er: error })
