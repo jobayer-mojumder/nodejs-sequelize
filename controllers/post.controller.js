@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
     post.findAll({ include: user }).then(function (data) {
         res.json({ data: data })
     }).catch(function (error) {
-        res.json({ er: error })
+        res.json({ message: error })
     })
 })
 

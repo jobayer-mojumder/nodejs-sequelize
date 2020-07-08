@@ -15,9 +15,9 @@ app.use(bodyParser.json());
 
 
 app.get('/', (req, res) => {
-    console.log('Welcome to the application')
     res.status(200).json({
-        data: "Welcome to the application"
+        status: 200,
+        message: "Welcome to the application"
     });
 })
 
