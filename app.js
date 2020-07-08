@@ -5,45 +5,15 @@ const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
-var postModel = require('./models').post;
-var userModel = require('./models').user;
-var categoryModel = require('./models').category;
+const userController = require('./controllers/user.controller')
+const postController = require('./controllers/user.controller')
+const categoryController = require('./controllers/user.controller')
 
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-    console.log('Welcome to the application')
-    res.status(200).json({
-        message: "Welcome to the application"
-    });
-})
-
-app.get('/users', (req, res) => {
-    userModel.findAll({ include: postModel }).then(function (data) {
-        res.json({ data: data })
-    }).catch(function (error) {
-        res.json({ er: error })
-    })
-})
-
-app.get('/posts', (req, res) => {
-    postModel.findAll().then(function (data) {
-        res.json({ data: data })
-    }).catch(function (error) {
-        res.json({ er: error })
-    })
-})
-
-app.get('/categories', (req, res) => {
-    categoryModel.findAll().then(function (data) {
-        res.json({ data: data })
-    }).catch(function (error) {
-        res.json({ er: error })
-    })
-})
-
+app.use('/api/users', userController);
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
