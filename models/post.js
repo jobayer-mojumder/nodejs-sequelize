@@ -8,13 +8,11 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
 
       post.belongsTo(models.user, {
-        foreignKey: 'userId',
-        as: 'userid'
+        foreignKey: 'userId'
       })
 
       post.belongsTo(models.category, {
-        foreignKey: 'categoryId',
-        as: 'categoryid'
+        foreignKey: 'categoryId'
       })
 
     }
