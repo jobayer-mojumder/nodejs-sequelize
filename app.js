@@ -13,9 +13,20 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+
+app.get('/', (req, res) => {
+    console.log('Welcome to the application')
+    res.status(200).json({
+        data: "Welcome to the application"
+    });
+})
+
+//----------routes-------//
 app.use('/api/users', userController);
 app.use('/api/posts', postController);
 app.use('/api/categories', categoryController);
+//-----------------------//
+
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
