@@ -35,36 +35,44 @@ router.post('/', (req, res) => {
 
 router.post('/login', (req, res) => {
     const body = req.body;
-    user.findOne({ where: { email: body.email } }).then(function (data) {
+    console.log(body.email);
+    user.findOne(
+        {
+            where:
+            {
+                email: body.email,
+                status: 1
+            }
+        }).then(function (data) {
 
-        if (!data) {
-            return res.status(401).json({
-                status: 401,
-                message: 'No user found'
-            });
-        }
+            if (!data) {
+                return res.status(401).json({
+                    status: 401,
+                    message: 'No user found'
+                });
+            }
 
-        const result = compareSync(body.password, data.password);
-        if (result) {
-            data.password = undefined;
-            const jsontoken = sign({ result: data }, process.env.JWT_KEY, {
-                expiresIn: '1h'
-            });
-            return res.status(200).json({
-                status: 200,
-                message: 'login successfully',
-                token: jsontoken
-            });
-        } else {
-            return res.status(401).json({
-                status: 401,
-                message: 'Invalid password'
-            });
-        }
+            const result = compareSync(body.password, data.password);
+            if (result) {
+                data.password = undefined;
+                const jsontoken = sign({ result: data }, process.env.JWT_KEY, {
+                    expiresIn: '1h'
+                });
+                return res.status(200).json({
+                    status: 200,
+                    message: 'login successfully',
+                    token: jsontoken
+                });
+            } else {
+                return res.status(401).json({
+                    status: 401,
+                    message: 'Invalid password'
+                });
+            }
 
-    }).catch(function (error) {
-        res.json({ message: error })
-    })
+        }).catch(function (error) {
+            res.json({ message: error })
+        })
 })
 
 

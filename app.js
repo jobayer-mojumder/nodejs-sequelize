@@ -10,7 +10,9 @@ const postController = require('./controllers/post.controller')
 const categoryController = require('./controllers/category.controller')
 
 app.use(cors())
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 app.use(bodyParser.json());
 
 

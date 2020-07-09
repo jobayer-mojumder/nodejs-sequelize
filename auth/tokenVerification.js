@@ -11,7 +11,7 @@ var tokenVerification = (req, res, next) => {
             if (err) {
                 return res.status(401).json({
                     status: 401,
-                    message: "Invalid Token..."
+                    message: "Invalid Token"
                 });
             } else {
                 req.user = decoded;
